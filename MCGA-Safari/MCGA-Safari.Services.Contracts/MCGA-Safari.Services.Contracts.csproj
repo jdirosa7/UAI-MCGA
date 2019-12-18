@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C7DA0A9A-0FA2-4535-AA76-3B8608B15190}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MCGA_Safari.Services.Contracts</RootNamespace>
+    <AssemblyName>MCGA-Safari.Services.Contracts</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ICliente.cs" />
+    <Compile Include="IDoctor.cs" />
+    <Compile Include="IEntityContract.cs" />
+    <Compile Include="IEspecie.cs" />
+    <Compile Include="INotificationAction.cs" />
+    <Compile Include="IPaciente.cs" />
+    <Compile Include="IRoom.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\Appointment\AddAppointmentRequest.cs" />
+    <Compile Include="Request\Appointment\AllAppointmentRequest.cs" />
+    <Compile Include="Request\Appointment\DeleteAppointmentRequest.cs" />
+    <Compile Include="Request\Appointment\GetAppointmentRequest.cs" />
+    <Compile Include="Request\Appointment\UpdateAppointmentRequest.cs" />
+    <Compile Include="Request\Client\AddClientRequest.cs" />
+    <Compile Include="Request\Client\AllClientRequest.cs" />
+    <Compile Include="Request\Client\DeleteClientRequest.cs" />
+    <Compile Include="Request\Client\GetClientRequest.cs" />
+    <Compile Include="Request\Client\UpdateClientRequest.cs" />
+    <Compile Include="Request\Doctor\AddDoctorRequest.cs" />
+    <Compile Include="Request\Doctor\AllDoctorRequest.cs" />
+    <Compile Include="Request\Doctor\DeleteDoctorRequest.cs" />
+    <Compile Include="Request\Doctor\GetDoctorRequest.cs" />
+    <Compile Include="Request\Doctor\UpdateDoctorRequest.cs" />
+    <Compile Include="Request\Patient\AddPatientRequest.cs" />
+    <Compile Include="Request\Patient\AllPatientRequest.cs" />
+    <Compile Include="Request\Patient\DeletePatientRequest.cs" />
+    <Compile Include="Request\Patient\GetPatientRequest.cs" />
+    <Compile Include="Request\Patient\UpdatePatientRequest.cs" />
+    <Compile Include="Request\Room\AddRoomRequest.cs" />
+    <Compile Include="Request\Room\AllRoomRequest.cs" />
+    <Compile Include="Request\Room\DeleteRoomRequest.cs" />
+    <Compile Include="Request\Room\GetRoomRequest.cs" />
+    <Compile Include="Request\Room\UpdateRoomRequest.cs" />
+    <Compile Include="Request\ServiceType\AddServiceTypeRequest.cs" />
+    <Compile Include="Request\ServiceType\AllServiceTypeRequest.cs" />
+    <Compile Include="Request\ServiceType\DeleteServiceTypeRequest.cs" />
+    <Compile Include="Request\ServiceType\GetServiceTypeRequest.cs" />
+    <Compile Include="Request\ServiceType\UpdateServiceTypeRequest.cs" />
+    <Compile Include="Request\Specie\AddSpecieRequest.cs" />
+    <Compile Include="Request\Specie\AllSpecieRequest.cs" />
+    <Compile Include="Request\Specie\DeleteSpecieRequest.cs" />
+    <Compile Include="Request\Specie\GetSpecieRequest.cs" />
+    <Compile Include="Request\Specie\UpdateSpecieRequest.cs" />
+    <Compile Include="Response\Appointment\AddAppointmentResponse.cs" />
+    <Compile Include="Response\Appointment\AllAppointmentResponse.cs" />
+    <Compile Include="Response\Appointment\DeleteAppointmentResponse.cs" />
+    <Compile Include="Response\Appointment\GetAppointmentResponse.cs" />
+    <Compile Include="Response\Appointment\UpdateAppointmentResponse.cs" />
+    <Compile Include="Response\Client\AddClientResponse.cs" />
+    <Compile Include="Response\Client\AllClientResponse.cs" />
+    <Compile Include="Response\Client\DeleteClientResponse.cs" />
+    <Compile Include="Response\Client\GetClientResponse.cs" />
+    <Compile Include="Response\Patient\GetClientPetsResponse.cs" />
+    <Compile Include="Response\Client\UpdateClientResponse.cs" />
+    <Compile Include="Response\Doctor\AddDoctorResponse.cs" />
+    <Compile Include="Response\Doctor\AllDoctorResponse.cs" />
+    <Compile Include="Response\Doctor\DeleteDoctorResponse.cs" />
+    <Compile Include="Response\Doctor\GetDoctorResponse.cs" />
+    <Compile Include="Response\Doctor\UpdateClientResponse.cs" />
+    <Compile Include="Response\Patient\AddPatientResponse.cs" />
+    <Compile Include="Response\Patient\AllPatientResponse.cs" />
+    <Compile Include="Response\Patient\DeletePatientResponse.cs" />
+    <Compile Include="Response\Patient\GetPatientResponse.cs" />
+    <Compile Include="Response\Patient\UpdatePatientResponse.cs" />
+    <Compile Include="Response\Room\AddRoomResponse.cs" />
+    <Compile Include="Response\Room\AllRoomResponse.cs" />
+    <Compile Include="Response\Room\DeleteRoomResponse.cs" />
+    <Compile Include="Response\Room\GetRoomResponse.cs" />
+    <Compile Include="Response\Room\UpdateRoomResponse.cs" />
+    <Compile Include="Response\ServiceType\AddServiceTypeResponse.cs" />
+    <Compile Include="Response\ServiceType\AllServiceTypeResponse.cs" />
+    <Compile Include="Response\ServiceType\DeleteServiceTypeResponse.cs" />
+    <Compile Include="Response\ServiceType\GetServiceTypeResponse.cs" />
+    <Compile Include="Response\ServiceType\UpdateServiceTypeResponse.cs" />
+    <Compile Include="Response\Specie\AddSpecieResponse.cs" />
+    <Compile Include="Response\Specie\AllSpeciesResponse.cs" />
+    <Compile Include="Response\Specie\DeleteSpecieResponse.cs" />
+    <Compile Include="Response\Specie\GetSpecieResponse.cs" />
+    <Compile Include="Response\Specie\UpdateSpecieResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MCGA-Safari.Entities\MCGA-Safari.Entities.csproj">
+      <Project>{0BBB7967-A5EC-4FC0-BE56-49111985A194}</Project>
+      <Name>MCGA-Safari.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
