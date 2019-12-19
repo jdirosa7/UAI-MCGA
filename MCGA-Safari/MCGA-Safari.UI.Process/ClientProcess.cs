@@ -49,7 +49,7 @@ namespace MCGA_Safari.UI.Process
         public List<Patient> GetClientPets(int id)
         {
             Dictionary<string, object> dir = new Dictionary<string, object>();
-            dir.Add("Id", id);
+            dir.Add("id", id);
             var response = HttpGet<GetClientPetsResponse>("api/client/getPets", dir, MediaType.Json);
             return response.Result;
         }

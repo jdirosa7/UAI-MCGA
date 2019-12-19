@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>Dashboard</h2>
+
+<h3>Principales accesos</h3>
+
+<div class="dashboard">
+    <div onclick="goToClientes()" class="Clientes">
+    <u>Clientes</u>
+    <br />
+    <img src="~/Images/clientes.png" /></div>
+    <div onclick="goToPacientes()" class="Pacientes">
+        <u>Pacientes</u>
+        <br />
+        <img src="~/Images/pacientes.png" />
+    </div>
+    <div onclick="goToDoctores()" class="Doctores">
+        <u>Doctores</u>
+        <br />
+        <img src="~/Images/doctor.png" />
+    </div>
+
+    <br />
+
+    <div onclick="goToTurnos()" class="turnos">
+        <u>Turnos</u>
+        <br />
+        <img src="~/Images/fecha.png" />
+    </div>
+    <div onclick="goToCalendario()" class="calendario">
+        <u>Calendario</u>
+        <br />
+        <img src="~/Images/calendario.png" />
+    </div>
+</div>
+
+<script>
+
+    function goToClientes() {
+        window.location.href = "/Client/";
+    }
+
+    function goToPacientes() {
+        window.location.href = "/Patient/";
+    }
+
+    function goToDoctores() {
+        window.location.href = "/Doctor/";
+    }
+
+    function goToTurnos() {
+        window.location.href = "/Appointment/";
+    }
+
+    function goToCalendario() {
+        window.location.href = "/Appointment/Calendar";
+    }
+
+</script>
+
+<style>
+    div.dashboard > div {
+        display: inline-block;
+        color: white;
+        border: 1px solid #CCC;
+        background: #289EA1;
+        box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+        cursor: pointer;
+        vertical-align: middle;
+        min-width: 100px;
+        min-height: 100px;
+        padding: 5px;
+        text-align: center;
+        margin-right: 40px;
+        margin-bottom: 40px;
+    }
+</style>

@@ -135,14 +135,31 @@
                 $("#Name").val("");
                 $("#Especie").val("");
                 $("#date-picker").val("");
-                $("#Name").val("");
+                $("#Cliente").val("");
                 $("#Observation").val("");
 
                 return false;
             }
 
+            function DataValida() {
+
+                $('.ValidationError').addClass("hidden");
+                if ($("#Name").val() == "" || $("#Especie").val() == null || $("#date-picker").val() == "" ||
+                    $("#Cliente").val() == null || $("#Observation").val() == "") {
+                    $('.ValidationError').removeClass("hidden");
+                    return false;
+                }
+
+                return true;
+            }
+
             function btnSubmit() {
                 var data = $("#formsubmit").serialize();
+
+                if (!DataValida()) {
+                    return;
+                }
+
                 $.ajax({
                     type: "POST",
                     url: "@Url.Action("PostData", "Patient")",
@@ -276,6 +293,11 @@
 
                             @Html.HiddenFor(m => m.Id, new { @id = "idPatient" })
 
+                            <div class="ValidationError hidden">
+                                <strong>Debe completar todos los campos obligatorios</strong>
+                            </div>
+                            <br />
+
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-8">
@@ -287,7 +309,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Specie, htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-8">
-                                    @Html.DropDownListFor(model => model.SpecieId, (ViewBag.Species as SelectList), new { @class = "form-control", @id = "Especie" })
+                                    @Html.DropDownListFor(model => model.SpecieId, (ViewBag.SpeciesList as SelectList), new { @class = "form-control", @id = "Especie" })
                                     @Html.ValidationMessageFor(model => model.SpecieId, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -303,7 +325,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Client, htmlAttributes: new { @class = "control-label col-md-4" })
                                 <div class="col-md-8">
-                                    @Html.DropDownListFor(model => model.ClientId, (ViewBag.Clients as SelectList), new { @class = "form-control", @id = "Cliente" })
+                                    @Html.DropDownListFor(model => model.ClientId, (ViewBag.ClientsList as SelectList), new { @class = "form-control", @id = "Cliente" })
                                     @Html.ValidationMessageFor(model => model.ClientId, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -369,5 +391,9 @@
     table#tablePatients > thead > tr{
         background-color: #0A79AC;
         color: #fff;
+    }
+
+    .ValidationError {
+        color: #D62702;
     }
 </style>

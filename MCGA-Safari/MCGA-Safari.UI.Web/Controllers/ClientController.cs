@@ -11,6 +11,7 @@ namespace MCGA_Safari.UI.Web.Controllers
     {
         ClientProcess db = new ClientProcess();
         MovementProcess dbMovement = new MovementProcess();
+        PatientProcess dbPatient = new PatientProcess();
         //ClientComponent db = new ClientComponent();
 
         
@@ -28,8 +29,10 @@ namespace MCGA_Safari.UI.Web.Controllers
 
         public ActionResult ClientMovements(int id)
         {
+            Client client = db.Find(id);
             List<Movement> Movements = dbMovement.GetMovementsByClient(id);
 
+            ViewBag.Cliente = client;
             return View(Movements);
         }
 
@@ -47,13 +50,14 @@ namespace MCGA_Safari.UI.Web.Controllers
 
         public ActionResult ClientPets(int id)
         {
-            ViewBag.ClientId = id;
+            Client client = db.Find(id);
+            ViewBag.Cliente = client;
             return View("ClientPets");
         }
 
         public ActionResult GetClientPets(int id)
         {
-            List<Patient> patients = db.GetClientPets(id);
+            List<Patient> patients = dbPatient.GetClientPets(id);
             return Json(new { data = patients }, JsonRequestBehavior.AllowGet);
         }
 

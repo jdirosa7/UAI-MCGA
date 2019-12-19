@@ -35,6 +35,14 @@ namespace MCGA_Safari.UI.Process
             return response.Result;
         }
 
+        public List<Patient> GetClientPets(int id)
+        {
+            Dictionary<string, object> dir = new Dictionary<string, object>();
+            dir.Add("id", id);
+            var response = HttpGet<GetClientPetsResponse>("api/Patient/getByClientId", dir, MediaType.Json);
+            return response.Result;
+        }
+
         public Patient Update(Patient patient)
         {
             var request = new UpdatePatientRequest();

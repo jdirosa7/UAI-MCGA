@@ -119,8 +119,24 @@
                 return false;
             }
 
+            function DataValida() {
+
+                $('.ValidationError').addClass("hidden");
+                if ($("#Name").val() == "") {
+                    $('.ValidationError').removeClass("hidden");
+                    return false;
+                }
+
+                return true;
+            }
+
             function btnSubmit() {
                 var data = $("#formsubmit").serialize();
+
+                if (!DataValida()) {
+                    return;
+                }
+
                 $.ajax({
                     type: "POST",
                     url: "@Url.Action("PostData", "ServiceType")",
@@ -250,31 +266,36 @@
                     <div class="modal-body">
                         @using (Html.BeginForm("PostData", "Index", FormMethod.Post, new { @id = "formsubmit" }))
                         {
-                            <div class="form-horizontal">
-                                <h4 class="crudType"></h4>
-                                <hr />
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                            <h4 class="crudType"></h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                                @Html.HiddenFor(m => m.Id, new { @id = "idServiceType" })
+                            @Html.HiddenFor(m => m.Id, new { @id = "idServiceType" })
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4" })
-                                    <div class="col-md-8">
-                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @id = "Name", @name = "Name", @placeholder = "Nombre" } })
-                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                            <div class="ValidationError hidden">
+                                <strong>Debe completar todos los campos obligatorios</strong>
+                            </div>
+                            <br />
 
-                                <div class="form-group">
-                                    <div class="col-md-offset-4 col-md-2">
-                                        <button id="btnSaveServiceType" type="button" class="btn btn-success" onclick="btnSubmit()">Guardar</button>
-                                        <button id="btnUpdServiceType" type="button" class="btn btn-success" onclick="btnUpdateServiceType()">Guardar</button>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @id = "Name", @name = "Name", @placeholder = "Nombre" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-4 col-md-2">
+                                    <button id="btnSaveServiceType" type="button" class="btn btn-success" onclick="btnSubmit()">Guardar</button>
+                                    <button id="btnUpdServiceType" type="button" class="btn btn-success" onclick="btnUpdateServiceType()">Guardar</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
                         }
                     </div>
                 </div>
@@ -318,5 +339,9 @@
     table#tableServiceTypes > thead > tr {
         background-color: #0A79AC;
         color: #fff;
+    }
+
+    .ValidationError {
+        color: #D62702;
     }
 </style>

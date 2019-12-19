@@ -7,6 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/layout.css")" rel="stylesheet" type="text/css" />
 
     <meta name="description" content="@ViewBag.Description">
     @* Author - (Optional) Used by search engines. The author of the page. *@
@@ -30,13 +31,40 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/clientes/">Clientes</a></li>
-                    <li><a href="/especies/">Especies</a></li>
-                    <li><a href="/pacientes/">Mascotas</a></li>
-                    <li><a href="/consultorios/">Consultorios</a></li>
-                    <li><a href="/doctores/">Nuestros doctores</a></li>
-                    <li><a href="/turnos/">Ver turnos</a></li>
-                    <li><a href="/contacto/">Contacto</a></li>
+                    <li><a href="/Home/Dashboard">Dashboard</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Servicios<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/Room/">Consultorios</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/ServiceType/"">Tipos de servicio</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/Doctor/">Doctores</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/Specie/">Especies</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/Client/">Clientes</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/Patient/">Pacientes</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="/Appointment/">Turnos</a></li>
+                    <li><a href="/Appointment/Calendar/">Calendario</a></li>
+                    <li><a href="/Home/Contact">Contacto</a></li>
+                    <li><a href="/Home/About">Nosotros</a></li>
                 </ul>
                 @Html.Partial("_MenuPartial")
                 @Html.Partial("_LoginPartial")

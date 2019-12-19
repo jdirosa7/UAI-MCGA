@@ -18,8 +18,8 @@ namespace MCGA_Safari.UI.Web.Controllers
         [Route("pacientes", Name = "PatientControllerRouteIndex")]
         public ActionResult Index()
         {
-            ViewBag.Clients = new SelectList(dbClient.ToList(), "Id", "Name");
-            ViewBag.Species = new SelectList(dbSpecie.ToList(), "Id", "Nombre");
+            ViewBag.ClientsList = new SelectList(dbClient.ToList(), "Id", "Name");
+            ViewBag.SpeciesList = new SelectList(dbSpecie.ToList(), "Id", "Nombre");
             return View();
         }
 

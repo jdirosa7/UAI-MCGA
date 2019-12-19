@@ -26,5 +26,10 @@ namespace MCGA_Safari.UI.Web.Controllers
 
             return View();
         }
+
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
     }
 }

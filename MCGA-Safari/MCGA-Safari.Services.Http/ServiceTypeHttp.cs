@@ -83,7 +83,7 @@ namespace MCGA_Safari.Services.Http
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("Update")]
         public void Update(UpdateServiceTypeRequest request)
         {
@@ -104,7 +104,7 @@ namespace MCGA_Safari.Services.Http
             }
         }
 
-        [HttpDelete]
+        [HttpPost]
         [Route("Delete")]
         public void Delete(DeleteServiceTypeRequest request)
         {

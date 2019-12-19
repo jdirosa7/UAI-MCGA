@@ -16,7 +16,7 @@ namespace MCGA_Safari.Services.Http
     public class RoomServiceHttp : ApiController
     {
         [HttpPost]
-        [Route("Add")]
+        [Route("add")]
         public AddRoomResponse Add(AddRoomRequest request)
         {
             try
@@ -38,7 +38,7 @@ namespace MCGA_Safari.Services.Http
         }
 
         [HttpGet]
-        [Route("GetAll")]
+        [Route("getAll")]
         public AllRoomsResponse GetAll()
         {
             try
@@ -62,7 +62,7 @@ namespace MCGA_Safari.Services.Http
         }
 
         [HttpGet]
-        [Route("GetById")]
+        [Route("getById")]
         public GetRoomResponse GetById(int id)
         {
             try
@@ -83,8 +83,8 @@ namespace MCGA_Safari.Services.Http
             }
         }
 
-        [HttpPut]
-        [Route("Update")]
+        [HttpPost]
+        [Route("update")]
         public void Update(UpdateRoomRequest request)
         {
             try
@@ -104,8 +104,8 @@ namespace MCGA_Safari.Services.Http
             }
         }
 
-        [HttpDelete]
-        [Route("Delete")]
+        [HttpPost]
+        [Route("delete")]
         public void Delete(DeleteRoomRequest request)
         {
             try

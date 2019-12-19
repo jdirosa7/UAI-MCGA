@@ -63,13 +63,13 @@ namespace MCGA_Safari.Services.Http
 
         [HttpGet]
         [Route("getById")]
-        public GetClientResponse getById(GetClientRequest request)
+        public GetClientResponse getById(int id)
         {
             try
             {
                 var response = new GetClientResponse();
                 var bc = new ClientComponent();
-                response.Result = bc.Find(request.Id);
+                response.Result = bc.Find(id);
                 return response;
             }
             catch (Exception ex)
@@ -81,9 +81,9 @@ namespace MCGA_Safari.Services.Http
                 };
                 throw new HttpResponseException(httpError);
             }
-        }
+        }        
 
-        [HttpPut]
+        [HttpPost]
         [Route("update")]
         public void delete(UpdateClientRequest request)
         {
@@ -104,7 +104,7 @@ namespace MCGA_Safari.Services.Http
             }
         }
 
-        [HttpDelete]
+        [HttpPost]
         [Route("delete")]
         public void delete(DeleteClientRequest request)
         {

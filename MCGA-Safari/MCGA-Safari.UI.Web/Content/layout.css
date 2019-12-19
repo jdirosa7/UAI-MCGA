@@ -1,0 +1,56 @@
+﻿.background-gray {
+    background-color: #393939;
+    /*height: 100px;*/
+    padding-top: 20px;
+}
+
+.footer address {
+    color: #b0afaf;
+    line-height: 22px;
+}
+
+.footer prov {
+    color: #64ffda;
+}
+
+.message{
+    text-align: center;
+}
+
+.contact-input{
+    border: 1px solid #0d9a80;
+    background: #555555;
+    padding:16px;
+}
+
+.btn-submit{
+    background: none;
+    border: 2px solid;
+    color:#fff;
+}
+
+input.company{
+    width:659px;
+}
+
+input.name, input.email{
+    width:360px;
+}
+
+textarea.message{
+    width:659px;
+    height:100px;
+}
+
+form h1{
+    color:#fff;
+    text-align:center;
+}
+
+.main{
+    background-color: #000;
+}
+
+.boton {
+    text-align: center;    
+}

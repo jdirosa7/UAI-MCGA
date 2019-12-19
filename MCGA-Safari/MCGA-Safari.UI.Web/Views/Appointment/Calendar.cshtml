@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Calendar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/fullcalendar.css" rel="stylesheet" />
+
+<h2>Calendario</h2>
+<br />
+
+<div>
+    <input type="button" value="Volver" onclick="btnBack()" class="btn btn-back" />
+</div>
+<br />
+
+<div id="calendar"></div>
+
+
+@section scripts{
+
+    @*<script src="~/Scripts/jquery-3.3.1.js"></script>
+        <script src="~/Scripts/fullcalendar.js"></script>*@
+
+    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>
+    <script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
+    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
+    @*<script src="~/Scripts/moment.min.js"></script>
+        <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>>
+        <script src="~/Scripts/fullcalendar/fullcalendar.min.js"></script>*@
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var appointments = @Html.Raw(ViewBag.Appointments);
+            //var appointments = JSON.parse(jsonList);
+
+            $("#calendar").fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month'
+                },
+                defaultView: 'month',
+                //timeZone: 'UTC',
+                timeFormat: 'H:mm',
+                themeSystem: 'bootstrap',
+                eventLimit: true,
+                locale: 'es',
+                firstDay: 1,
+                allDaySlot: true,
+                allDayText: 'Todo el día',
+                buttonText: {
+                    today: 'Hoy',
+                    month: 'Mes',
+                    week: 'Semana',
+                    day: 'Dia',
+                },
+                eventRender: function (eventObj, $el) {
+                    $el.popover({
+                        title: eventObj.title,
+                        content: eventObj.description,
+                        trigger: 'hover',
+                        placement: 'top',
+                        container: 'body'
+                    });
+                },
+                events: appointments
+            })
+        });
+
+        function btnBack() {
+            window.location.href = '/Home/';
+        }
+    </script>
+}
+
+<style>
+    .btn-back {
+        color: #fff;
+        background-color: #0DAFB4;
+        border-color: #0DAFB4;
+    }
+
+    .btn-back:hover {
+        background-color: #0A969A;
+        border-color: #0A969A;
+    }
+</style>

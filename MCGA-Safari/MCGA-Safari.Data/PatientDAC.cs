@@ -35,7 +35,8 @@ namespace MCGA_Safari.Data
         {
             const string SQL_STATEMENT = "SELECT P.Id, P.Nombre, E.Nombre as NombreEspecie, E.Id as IDEspecie, P.FechaNacimiento," +
                 "C.Nombre as NombreCliente, C.Apellido as ApellidoCliente, C.Domicilio, C.Email, " +
-                "C.FechaNacimiento as FechaNacCliente, C.Id as IDCliente, C.Telefono, C.Url, P.Observacion " +
+                "C.FechaNacimiento as FechaNacCliente, C.Id as ClienteId, C.Telefono, C.Url, P.Observacion," +
+                "E.Id as EspecieId, E.Nombre as NombreEspecie " +
                 "FROM Paciente P inner join Cliente C on P.ClienteId = C.Id inner join Especie E on P.EspecieId = E.Id";
 
             List<Patient> result = new List<Patient>();
@@ -58,7 +59,8 @@ namespace MCGA_Safari.Data
         {
             const string SQL_STATEMENT = "SELECT P.Id, P.Nombre, E.Nombre as NombreEspecie, E.Id as IDEspecie, P.FechaNacimiento," +
                 "C.Nombre as NombreCliente, C.Apellido as ApellidoCliente, C.Domicilio, C.Email, " +
-                "C.FechaNacimiento as FechaNacCliente, C.Id as IDCliente, C.Telefono, C.Url, P.Observacion " +
+                "C.FechaNacimiento as FechaNacCliente, C.Id as ClienteId, C.Telefono, C.Url, P.Observacion," +
+                "E.Id as EspecieId, E.Nombre as NombreEspecie " +
                 "FROM Paciente P inner join Cliente C on P.ClienteId = C.Id inner join Especie E on P.EspecieId = E.Id" +
                 " WHERE P.Id=@Id ";
             Patient patient = null;
@@ -80,14 +82,18 @@ namespace MCGA_Safari.Data
 
         public List<Patient> ReadyByFilters(Dictionary<string, string> filters)
         {
-            string SQL_STATEMENT = "SELECT [Id], [Nombre], [FechaNacimiento], [Observacion]," +
-                " [ClienteId], [EspecieId] FROM Paciente WHERE  ";
-            List<Patient> clients = null;
+            string SQL_STATEMENT = "SELECT P.Id, P.Nombre, E.Nombre as NombreEspecie, E.Id as IDEspecie, P.FechaNacimiento," +
+                "C.Nombre as NombreCliente, C.Apellido as ApellidoCliente, C.Domicilio, C.Email, " +
+                "C.FechaNacimiento as FechaNacCliente, C.Id as ClienteId, C.Telefono, C.Url, P.Observacion," +
+                "E.Id as EspecieId, E.Nombre as NombreEspecie " +
+                "FROM Paciente P inner join Cliente C on P.ClienteId = C.Id inner join Especie E on P.EspecieId = E.Id" +
+                " WHERE ";
+            List<Patient> patients = new List<Patient>();
 
             List<KeyValuePair<string, string>> values = filters.ToList();
             for (int i = 0; i < filters.Count; i++)
             {
-                SQL_STATEMENT += values[i].Key + " = @" + values[i].Key;
+                SQL_STATEMENT += values[i].Key + " = " + values[i].Value;
 
                 if (i + 1 != filters.Count)
                     SQL_STATEMENT += " AND ";
@@ -108,11 +114,11 @@ namespace MCGA_Safari.Data
                 {
                     if (dr.Read())
                     {
-                        clients.Add(LoadPatient(dr));
+                        patients.Add(LoadPatient(dr));
                     }
                 }
             }
-            return clients;
+            return patients;
         }
 
         public void Update(Patient patient)
@@ -153,12 +159,12 @@ namespace MCGA_Safari.Data
             patient.Observation = GetDataValue<string>(dr, "Observacion");
             patient.Specie = new Species
             {
-                Id = GetDataValue<int>(dr, "IDEspecie"),
+                Id = GetDataValue<int>(dr, "EspecieId"),
                 Nombre = GetDataValue<string>(dr, "NombreEspecie")
             };
             patient.Client = new Client
             {
-                Id = GetDataValue<int>(dr, "IDCliente"),
+                Id = GetDataValue<int>(dr, "ClienteId"),
                 Name = GetDataValue<string>(dr, "NombreCliente"),
                 LastName = GetDataValue<string>(dr, "ApellidoCliente"),
                 BirthDate = GetDataValue<DateTime>(dr, "FechaNacCliente"),
@@ -167,8 +173,8 @@ namespace MCGA_Safari.Data
                 Phone = GetDataValue<string>(dr, "Telefono"),
                 URL = GetDataValue<string>(dr, "Url")
             };
-            patient.ClientId = GetDataValue<int>(dr, "IDCliente");
-            patient.SpecieId = GetDataValue<int>(dr, "IDEspecie");
+            patient.ClientId = GetDataValue<int>(dr, "ClienteId");
+            patient.SpecieId = GetDataValue<int>(dr, "EspecieId");
             return patient;
         }
     }

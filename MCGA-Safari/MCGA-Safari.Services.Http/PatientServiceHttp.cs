@@ -83,7 +83,29 @@ namespace MCGA_Safari.Services.Http
             }
         }
 
-        [HttpPut]
+        [HttpGet]
+        [Route("getByClientId")]
+        public GetClientPetsResponse getByClientId(int id)
+        {
+            try
+            {
+                var response = new GetClientPetsResponse();
+                var bc = new ClientComponent();
+                response.Result = bc.GetClientPets(id);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                var httpError = new HttpResponseMessage()
+                {
+                    StatusCode = (HttpStatusCode)422,
+                    ReasonPhrase = ex.Message
+                };
+                throw new HttpResponseException(httpError);
+            }
+        }
+
+        [HttpPost]
         [Route("update")]
         public void delete(UpdatePatientRequest request)
         {
@@ -104,7 +126,7 @@ namespace MCGA_Safari.Services.Http
             }
         }
 
-        [HttpDelete]
+        [HttpPost]
         [Route("delete")]
         public void delete(DeletePatientRequest request)
         {

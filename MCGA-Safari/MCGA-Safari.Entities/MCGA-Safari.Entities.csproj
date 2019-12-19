@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Appointment.cs" />
+    <Compile Include="CalendarItem.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Doctor.cs" />

@@ -20,7 +20,7 @@ namespace MCGA_Safari.UI.Web.Controllers
         [Route("consultorios", Name = "RoomControllerRouteIndex")]
         public ActionResult Index()
         {
-            ViewBag.RoomTypes = new SelectList(Enum.GetValues(typeof(Room.RoomTypes)), RoomTypes.Recuperación);
+            ViewBag.RoomTypes = new SelectList(Enum.GetValues(typeof(Room.RoomTypes)), 1);
             return View();
             //var Rooms = db.ToList();
             //return View(Rooms);

@@ -63,13 +63,13 @@ namespace MCGA_Safari.Services.Http
 
         [HttpGet]
         [Route("getById")]
-        public GetDoctorResponse getById(GetDoctorRequest request)
+        public GetDoctorResponse getById(int id)
         {
             try
             {
                 var response = new GetDoctorResponse();
                 var bc = new DoctorComponent();
-                response.Result = bc.Find(request.Id);
+                response.Result = bc.Find(id);
                 return response;
             }
             catch (Exception ex)
@@ -83,7 +83,7 @@ namespace MCGA_Safari.Services.Http
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("update")]
         public void delete(UpdateDoctorRequest request)
         {
@@ -104,7 +104,7 @@ namespace MCGA_Safari.Services.Http
             }
         }
 
-        [HttpDelete]
+        [HttpPost]
         [Route("delete")]
         public void delete(DeleteDoctorRequest request)
         {

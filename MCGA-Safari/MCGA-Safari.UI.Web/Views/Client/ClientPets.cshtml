@@ -4,10 +4,10 @@
     ViewBag.Title = "ClientPets";
 }
 
-<h2>Mascotas del cliente ViewBag.Cliente</h2>
+<h2>Mascotas del cliente @ViewBag.Cliente.Name @ViewBag.Cliente.LastName</h2>
 
 @*<button type="button" class="btn btn-blue" style="margin-bottom:10px" onclick="getBack()"><span class="glyphicon glyphicon-arrow-left" style="margin-right:5px"></span>Volver</button>*@
-@Html.ActionLink("Volver", "Index2", "Client", null, new { @class = "btn btn-blue" })
+@Html.ActionLink("Volver", "Index", "Client", null, new { @class = "btn btn-blue" })
 
 <table id="tablePatients" class="table table-striped table-bordered" style="width:100%">
     <thead>
@@ -32,7 +32,7 @@
     <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
     <script>
         $(document).ready(function () {
-                var id = 1;
+                var id = @ViewBag.Cliente.Id;
                 var table = $('#tablePatients').DataTable({
 
                     "ajax": {
@@ -45,8 +45,19 @@
                         {},
                         { "data": "Id" },
                         { "data": "Name" },
-                        { "data": "BirthDate" },
-                        { "data": "Specie" },
+                        {
+                            "data": "BirthDate", render: function (data) {
+                                var date = new Date(parseInt(data.substr(6)));
+                                var ret = date.toLocaleDateString();
+                                return ret;
+                            }
+                        },
+                        {
+                            "data": "Specie", render: function (data) {
+                                var name = data.Nombre;
+                                return name;
+                            }
+                        }, 
                         { "data": "Observation" }
                     ],
 
@@ -81,7 +92,7 @@
 
             $.ajax({
                     type: "GET",
-                    url: "@Url.Action("Index2", "Client")",
+                    url: "@Url.Action("Index", "Client")",
                     data: data,
                     success: function (response) {
 

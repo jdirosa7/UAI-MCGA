@@ -16,6 +16,7 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+    
     <div class="form-group">
         @Html.LabelFor(model => model.ServiceType, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-8">
@@ -91,8 +92,9 @@
         border-color: #0DAFB4;
     }
 
-        .btn-back:hover {
-            background-color: #0A969A;
-            border-color: #0A969A;
-        }
+    .btn-back:hover {
+        background-color: #0A969A;
+        border-color: #0A969A;
+    }
+
 </style>

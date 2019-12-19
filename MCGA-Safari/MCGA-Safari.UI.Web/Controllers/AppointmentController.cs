@@ -27,10 +27,10 @@ namespace MCGA_Safari.UI.Web.Controllers
         [Route("turnos", Name = "AppointmentControllerRouteIndex")]
         public ActionResult Index()
         {
-            ViewBag.ServiceTypes = new SelectList(dbServiceType.ToList(), "Id", "Name");
-            ViewBag.Patients = new SelectList(dbPatient.ToList(), "Id", "Name");
-            ViewBag.Rooms = new SelectList(dbRoom.ToList(), "Id", "Name");
-            ViewBag.Doctors = new SelectList(dbDoctor.ToList(), "Id", "Name");
+            ViewBag.ServiceTypesList = new SelectList(dbServiceType.ToList(), "Id", "Name");
+            ViewBag.PatientsList = new SelectList(dbPatient.ToList(), "Id", "Name");
+            ViewBag.RoomsList = new SelectList(dbRoom.ToList(), "Id", "Name");
+            ViewBag.DoctorsList = new SelectList(dbDoctor.ToList(), "Id", "Name");
             return View();
         }
 
@@ -41,6 +41,22 @@ namespace MCGA_Safari.UI.Web.Controllers
             ViewBag.Rooms = new SelectList(dbRoom.ToList(), "Id", "Name");
             ViewBag.Doctors = new SelectList(dbDoctor.ToList(), "Id", "Name");
             return View();
+        }
+
+        public ActionResult Calendar()
+        {
+            List<Appointment> apps = db.ToList();
+
+            var json = ToJSON(ToCalendarModel(apps));
+
+            ViewBag.Appointments = json;
+            return View();
+        }
+
+        public static string ToJSON(List<CalendarItem> obj)
+        {
+            var oSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            return oSerializer.Serialize(obj);
         }
 
         public ActionResult GetData()
@@ -143,6 +159,25 @@ namespace MCGA_Safari.UI.Web.Controllers
             }
 
             return Json("error", JsonRequestBehavior.DenyGet);
+        }
+
+        public static List<CalendarItem> ToCalendarModel(List<Appointment> appointments)
+        {
+            List<CalendarItem> calendarItems = new List<CalendarItem>();
+
+            appointments.ForEach(app =>
+            {
+                calendarItems.Add(new CalendarItem
+                {
+                    Id = app.Id,
+                    title = "Turno",
+                    description = "Paciente: " + app.Patient.Name + " con Doctor: " + app.Doctor.LastName,
+                    start = app.Date.ToString("yyyy-MM-ddThh:mm:ss"),
+                    end = app.Date.ToString("yyyy-MM-ddThh:mm:ss"),
+                });
+            });            
+
+            return calendarItems;
         }
 
         // GET: Appointment/Details/5
