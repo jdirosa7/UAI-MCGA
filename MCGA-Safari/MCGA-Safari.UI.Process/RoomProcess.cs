@@ -17,10 +17,10 @@ namespace MCGA_Safari.UI.Process
             return response.Result;
         }
 
-        public void Add(Room room)
+        public void Add(Room Room)
         {
             var request = new AddRoomRequest();
-            request.Room = room;
+            request.Room = Room;
             var response = HttpPost<AddRoomRequest>("api/room/add", request, MediaType.Json);
         }
 
@@ -32,10 +32,10 @@ namespace MCGA_Safari.UI.Process
             return response.Result;
         }
 
-        public void Update(Room room)
+        public void Update(Room Room)
         {
             var request = new UpdateRoomRequest();
-            request.Room = room;
+            request.Room = Room;
             var response = HttpPost<UpdateRoomRequest>("api/room/update", request, MediaType.Json);
         }
 

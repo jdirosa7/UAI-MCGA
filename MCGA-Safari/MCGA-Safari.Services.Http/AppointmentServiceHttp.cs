@@ -63,13 +63,13 @@ namespace MCGA_Safari.Services.Http
 
         [HttpGet]
         [Route("getById")]
-        public GetAppointmentResponse getById(GetAppointmentRequest request)
+        public GetAppointmentResponse getById(int id)
         {
             try
             {
                 var response = new GetAppointmentResponse();
                 var bc = new AppointmentComponent();
-                response.Result = bc.Find(request.Appointment.Id);
+                response.Result = bc.Find(id);
                 return response;
             }
             catch (Exception ex)
@@ -83,7 +83,7 @@ namespace MCGA_Safari.Services.Http
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("update")]
         public void delete(UpdateAppointmentRequest request)
         {
@@ -104,7 +104,7 @@ namespace MCGA_Safari.Services.Http
             }
         }
 
-        [HttpDelete]
+        [HttpPost]
         [Route("delete")]
         public void delete(DeleteAppointmentRequest request)
         {

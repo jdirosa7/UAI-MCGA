@@ -56,9 +56,13 @@
     <Compile Include="AppointmentServiceHttp.cs" />
     <Compile Include="ClientServiceHttp.cs" />
     <Compile Include="DoctorServiceHttp.cs" />
+    <Compile Include="MovementServiceHttp.cs" />
+    <Compile Include="MovementTypeServiceHttp.cs" />
     <Compile Include="PatientServiceHttp.cs" />
+    <Compile Include="PriceServiceHttp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoomServiceHttp.cs" />
+    <Compile Include="ServiceTypeHttp.cs" />
     <Compile Include="SpecieServiceHttp.cs" />
   </ItemGroup>
   <ItemGroup>

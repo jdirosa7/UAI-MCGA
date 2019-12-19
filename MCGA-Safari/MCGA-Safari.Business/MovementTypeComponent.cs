@@ -39,5 +39,14 @@ namespace MCGA_Safari.Business
             result = dac.Read();
             return result;
         }
+
+        public MovementType GetByName(string name)
+        {
+            MovementType result = default(MovementType);
+
+            var dac = new MovementTypeDAC();
+            result = dac.ReadBy(name);
+            return result;
+        }
     }
 }

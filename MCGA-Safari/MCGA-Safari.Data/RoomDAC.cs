@@ -12,7 +12,7 @@ namespace MCGA_Safari.Data
 {
     public class RoomDAC : DataAccessComponent, IRepository<Room>
     {
-        public Room Create(Room room)
+        public Room Create(Room Room)
         {
             const string SQL_STATEMENT = "INSERT INTO Sala ([Nombre],[TipoSala]) VALUES(@Nombre,@TipoSala);" +
                 " SELECT SCOPE_IDENTITY();";
@@ -20,11 +20,11 @@ namespace MCGA_Safari.Data
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
-                db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, room.Name);
-                db.AddInParameter(cmd, "@TipoSala", DbType.AnsiString, room.RoomType);
-                room.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
+                db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, Room.Name);
+                db.AddInParameter(cmd, "@TipoSala", DbType.AnsiString, Room.RoomType);
+                Room.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
-            return room;
+            return Room;
         }
 
         public List<Room> Read()
@@ -39,8 +39,8 @@ namespace MCGA_Safari.Data
                 {
                     while (dr.Read())
                     {
-                        Room room = LoadRoom(dr);
-                        result.Add(room);
+                        Room Room = LoadRoom(dr);
+                        result.Add(Room);
                     }
                 }
             }
@@ -50,7 +50,7 @@ namespace MCGA_Safari.Data
         public Room ReadBy(int id)
         {
             const string SQL_STATEMENT = "SELECT [Id], [Nombre], [TipoSala] FROM Sala WHERE [Id]=@Id ";
-            Room room = null;
+            Room Room = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
@@ -60,23 +60,23 @@ namespace MCGA_Safari.Data
                 {
                     if (dr.Read())
                     {
-                        room = LoadRoom(dr);
+                        Room = LoadRoom(dr);
                     }
                 }
             }
-            return room;
+            return Room;
         }
 
-        public void Update(Room room)
+        public void Update(Room Room)
         {
             const string SQL_STATEMENT = "UPDATE Sala SET [Nombre]= @Nombre, [TipoSala]=@TipoSala WHERE [Id]= @Id ";
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
-                db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, room.Name);
-                db.AddInParameter(cmd, "@TipoSala", DbType.AnsiString, room.RoomType);
-                db.AddInParameter(cmd, "@Id", DbType.Int32, room.Id);
+                db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, Room.Name);
+                db.AddInParameter(cmd, "@TipoSala", DbType.AnsiString, Room.RoomType);
+                db.AddInParameter(cmd, "@Id", DbType.Int32, Room.Id);
                 db.ExecuteNonQuery(cmd);
             }
         }
@@ -94,11 +94,11 @@ namespace MCGA_Safari.Data
 
         private Room LoadRoom(IDataReader dr)
         {
-            Room room = new Room();
-            room.Id = GetDataValue<int>(dr, "Id");
-            room.Name = GetDataValue<string>(dr, "Nombre");
-            room.RoomType = GetDataValue<string>(dr, "TipoSala");
-            return room;
+            Room Room = new Room();
+            Room.Id = GetDataValue<int>(dr, "Id");
+            Room.Name = GetDataValue<string>(dr, "Nombre");
+            Room.RoomType = GetDataValue<string>(dr, "TipoSala");
+            return Room;
         }
 
         public List<Room> ReadyByFilters(Dictionary<string, string> filters)

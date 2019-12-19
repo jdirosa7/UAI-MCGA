@@ -1,0 +1,98 @@
+﻿@model MCGA_Safari.Entities.Price
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Configurar precio a Tipo de Servicio: @ViewBag.ServiceType.Name</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4></h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ServiceType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            <label style="padding-top:9px" id="StatusValue">@ViewBag.ServiceType.Name</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FromDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "form-control date-pickerDesde", @id = "date-pickerFrom", @name = "FromDate", @placeholder = "Fecha desde" } })
+            @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ToDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control date-pickerHasta", @id = "date-pickerTo", @name = "ToDate", @placeholder = "Fecha hasta" } })
+            @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-1">
+            <input type="submit" value="Guardar" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    <input type="button" value="Volver" onclick="btnBack()" class="btn btn-back" />
+</div>
+<br />
+
+<link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.date-pickerDesde').datepicker();
+            $('.date-pickerHasta').datepicker();
+        });
+
+        function btnBack() {
+
+            window.location.href = '/ServiceType/Index/';
+        }
+
+    </script>
+}
+
+
+<style>
+
+    .btn-back {
+        color: #fff;
+        background-color: #0DAFB4;
+        border-color: #0DAFB4;
+    }
+
+        .btn-back:hover {
+            background-color: #0A969A;
+            border-color: #0A969A;
+        }
+</style>

@@ -39,5 +39,17 @@ namespace MCGA_Safari.Business
             result = dac.Read();
             return result;
         }
+
+        public List<Movement> Find(int id)
+        {
+            List<Movement> result = default(List<Movement>);
+
+            Dictionary<string, string> filters = new Dictionary<string, string>();
+            filters.Add("ClienteId", id.ToString());          
+            
+            var dac = new MovementDAC();
+            result = dac.ReadyByFilters(filters);
+            return result;
+        }
     }
 }

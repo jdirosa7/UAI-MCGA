@@ -30,7 +30,7 @@ namespace MCGA_Safari.UI.Process
         public Patient Find(int id)
         {
             Dictionary<string, object> dir = new Dictionary<string, object>();
-            dir.Add("Id", id);
+            dir.Add("id", id);
             var response = HttpGet<GetPatientResponse>("api/Patient/getById", dir, MediaType.Json);
             return response.Result;
         }

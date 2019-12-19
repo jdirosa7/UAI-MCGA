@@ -21,13 +21,13 @@ namespace MCGA_Safari.Entities
 
         public int PatientId { get; set; }
 
-        public Room Room { get; set; }
-
-        public int RoomId { get; set; }
-
-        public  ServiceType ServiceType { get; set; }
+        public ServiceType ServiceType { get; set; }
 
         public int ServiceTypeId { get; set; }
+
+        public  Room Room { get; set; }
+
+        public int RoomId { get; set; }
 
         [DisplayName("Estado")]
         public string Status { get; set; }

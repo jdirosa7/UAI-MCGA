@@ -65,11 +65,13 @@
     <Compile Include="Request\Doctor\DeleteDoctorRequest.cs" />
     <Compile Include="Request\Doctor\GetDoctorRequest.cs" />
     <Compile Include="Request\Doctor\UpdateDoctorRequest.cs" />
+    <Compile Include="Request\Movement\AddMovementRequest.cs" />
     <Compile Include="Request\Patient\AddPatientRequest.cs" />
     <Compile Include="Request\Patient\AllPatientRequest.cs" />
     <Compile Include="Request\Patient\DeletePatientRequest.cs" />
     <Compile Include="Request\Patient\GetPatientRequest.cs" />
     <Compile Include="Request\Patient\UpdatePatientRequest.cs" />
+    <Compile Include="Request\Price\AddPriceRequest.cs" />
     <Compile Include="Request\Room\AddRoomRequest.cs" />
     <Compile Include="Request\Room\AllRoomRequest.cs" />
     <Compile Include="Request\Room\DeleteRoomRequest.cs" />
@@ -94,6 +96,9 @@
     <Compile Include="Response\Client\AllClientResponse.cs" />
     <Compile Include="Response\Client\DeleteClientResponse.cs" />
     <Compile Include="Response\Client\GetClientResponse.cs" />
+    <Compile Include="Response\MovementType\GetMovementTypeResponse.cs" />
+    <Compile Include="Response\Movement\AddMovementResponse.cs" />
+    <Compile Include="Response\Movement\ClientMovementResponse.cs" />
     <Compile Include="Response\Patient\GetClientPetsResponse.cs" />
     <Compile Include="Response\Client\UpdateClientResponse.cs" />
     <Compile Include="Response\Doctor\AddDoctorResponse.cs" />
@@ -106,6 +111,8 @@
     <Compile Include="Response\Patient\DeletePatientResponse.cs" />
     <Compile Include="Response\Patient\GetPatientResponse.cs" />
     <Compile Include="Response\Patient\UpdatePatientResponse.cs" />
+    <Compile Include="Response\Price\AddPriceResponse.cs" />
+    <Compile Include="Response\Price\GetPriceResponse.cs" />
     <Compile Include="Response\Room\AddRoomResponse.cs" />
     <Compile Include="Response\Room\AllRoomResponse.cs" />
     <Compile Include="Response\Room\DeleteRoomResponse.cs" />

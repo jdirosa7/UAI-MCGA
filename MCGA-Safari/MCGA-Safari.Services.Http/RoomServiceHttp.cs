@@ -63,13 +63,13 @@ namespace MCGA_Safari.Services.Http
 
         [HttpGet]
         [Route("GetById")]
-        public GetRoomResponse GetById(GetRoomRequest request)
+        public GetRoomResponse GetById(int id)
         {
             try
             {
                 var response = new GetRoomResponse();
                 var bc = new RoomComponent();
-                response.Result = bc.Find(request.Room.Id);
+                response.Result = bc.Find(id);
                 return response;
             }
             catch (Exception ex)

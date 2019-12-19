@@ -15,23 +15,30 @@ namespace MCGA_Safari.UI.Web.Controllers
         AppointmentProcess db = new AppointmentProcess();
         PatientProcess dbPatient = new PatientProcess();
         ClientProcess dbClient = new ClientProcess();
-        RoomProcess dbRoom = new RoomProcess();
         ServiceTypeProcess dbServiceType = new ServiceTypeProcess();
+        RoomProcess dbRoom = new RoomProcess();
         DoctorProcess dbDoctor = new DoctorProcess();
+        PriceProcess dbPrice = new PriceProcess();
+        MovementTypeProcess dbMovementType = new MovementTypeProcess();
+        MovementProcess dbMovement = new MovementProcess();
 
 
         // GET: Appointment
         [Route("turnos", Name = "AppointmentControllerRouteIndex")]
         public ActionResult Index()
         {
+            ViewBag.ServiceTypes = new SelectList(dbServiceType.ToList(), "Id", "Name");
+            ViewBag.Patients = new SelectList(dbPatient.ToList(), "Id", "Name");
+            ViewBag.Rooms = new SelectList(dbRoom.ToList(), "Id", "Name");
+            ViewBag.Doctors = new SelectList(dbDoctor.ToList(), "Id", "Name");
             return View();
         }
 
         public ActionResult Index2()
         {
-            ViewBag.Rooms = new SelectList(dbRoom.ToList(), "Id", "Name");
-            ViewBag.Patients = new SelectList(dbPatient.ToList(), "Id", "Name");
             ViewBag.ServiceTypes = new SelectList(dbServiceType.ToList(), "Id", "Name");
+            ViewBag.Patients = new SelectList(dbPatient.ToList(), "Id", "Name");
+            ViewBag.Rooms = new SelectList(dbRoom.ToList(), "Id", "Name");
             ViewBag.Doctors = new SelectList(dbDoctor.ToList(), "Id", "Name");
             return View();
         }
@@ -78,6 +85,45 @@ namespace MCGA_Safari.UI.Web.Controllers
                 dataAppointment.CreatedDate = DateTime.Today;
                 db.Add(dataAppointment);
             }
+
+            if(dataAppointment.Status == "Confirmado")
+            {
+                //Con el Tipo de servicio y la fecha de hoy, busco el precio
+                //Luego busco el tipo de movimiento deudor y obtengo el multiplicador
+                //Creo un movimiento con fecha, cliente, tipo de movimiento y valor
+                MovementType movementType = dbMovementType.Find("Deudor");
+                Price price = dbPrice.Find(dataAppointment.ServiceTypeId, DateTime.Today);                
+                Patient patient = dbPatient.Find(dataAppointment.PatientId);
+                Movement movement = new Movement {
+                    ClientId = patient.ClientId,
+                    Date = DateTime.Today,
+                    MovementTypeId = movementType.Id,
+                    Value = price.Value * movementType.Multiplier
+                };
+                dbMovement.Add(movement);
+            }
+            else
+            {
+                if(dataAppointment.Status == "Realizado")
+                {
+                    //Con el Tipo de servicio y la fecha de hoy, busco el precio
+                    //Luego busco el tipo de movimiento acreedor y obtengo el multiplicador
+                    //Creo un movimiento con fecha, cliente, tipo de movimiento y valor
+                    Price price = dbPrice.Find(dataAppointment.ServiceTypeId, DateTime.Today);
+                    MovementType movementType = dbMovementType.Find("Acreedor");
+                    Patient patient = dbPatient.Find(dataAppointment.PatientId);
+                    Movement movement = new Movement
+                    {
+                        ClientId = patient.ClientId,
+                        Date = DateTime.Today,
+                        MovementTypeId = movementType.Id,
+                        Value = price.Value * movementType.Multiplier
+                    };
+                    dbMovement.Add(movement);
+                }
+            }
+
+            
 
             return Json("success", JsonRequestBehavior.AllowGet);
         }

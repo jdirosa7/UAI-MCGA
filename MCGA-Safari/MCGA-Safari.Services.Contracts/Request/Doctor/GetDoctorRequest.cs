@@ -12,6 +12,6 @@ namespace MCGA_Safari.Services.Contracts.Request
     public partial class GetDoctorRequest
     {
         [DataMember]
-        public Doctor Doctor { get; set; }
+        public int Id { get; set; }
     }
 }

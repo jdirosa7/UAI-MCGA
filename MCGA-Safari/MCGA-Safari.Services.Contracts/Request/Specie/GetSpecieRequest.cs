@@ -12,6 +12,6 @@ namespace MCGA_Safari.Services.Contracts.Request
     public partial class GetSpecieRequest
     {
         [DataMember]
-        public Species Specie { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -69,7 +69,7 @@ namespace MCGA_Safari.Services.Http
             {
                 var response = new GetSpecieResponse();
                 var bc = new SpecieComponent();
-                response.Result = bc.Find(request.Specie.Id);
+                response.Result = bc.Find(request.Id);
                 return response;
             }
             catch (Exception ex)

@@ -16,8 +16,8 @@ namespace MCGA_Safari.UI.Web.Controllers
         [Route("doctores", Name = "DoctorControllerRouteIndex")]
         public ActionResult Index()
         {
-            var doctors = db.ToList();
-            return View(doctors);
+            ViewBag.EnrollmentTypes = new SelectList(Enum.GetValues(typeof(Doctor.EnrollmentTypes)), "MP");
+            return View();
         }
 
         public ActionResult Index2()

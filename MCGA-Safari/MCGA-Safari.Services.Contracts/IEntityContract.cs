@@ -11,7 +11,7 @@ namespace MCGA_Safari.Services.Contracts
     {
         List<T> ToList();
         T Find(int id);
-        T Add(T room);
+        T Add(T ServiceType);
         T Update(int id, T obj);
         void Delete(int id);
     }

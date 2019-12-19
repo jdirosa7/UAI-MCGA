@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MCGA_Safari.Services
 {
-    class RoomService
+    class ServiceTypeService
     {
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MCGA_Safari.Entities;
+using MCGA_Safari.UI.Process;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,10 @@ namespace MCGA_Safari.UI.Web.Controllers
 {
     public class PriceController : Controller
     {
+        ServiceTypeProcess dbServiceType = new ServiceTypeProcess();
+        PriceProcess db = new PriceProcess();
+
+        public static ServiceType serviceType = null;
         // GET: Price
         public ActionResult Index()
         {
@@ -21,20 +27,24 @@ namespace MCGA_Safari.UI.Web.Controllers
         }
 
         // GET: Price/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            serviceType = dbServiceType.Find(id.Value);
+            ViewBag.ServiceType = serviceType;
+            
             return View();
         }
 
         // POST: Price/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Price price)
         {
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                price.ServiceTypeId = serviceType.Id;
+                db.Add(price);
+                return RedirectToAction("Index", "ServiceType");
             }
             catch
             {

@@ -322,12 +322,13 @@
     <Content Include="Views\Specie\Details.cshtml" />
     <Content Include="Views\Specie\Edit.cshtml" />
     <Content Include="Views\Specie\Index.cshtml" />
+    <Content Include="Views\Price\Create.cshtml" />
+    <Content Include="Views\Client\ClientMovements.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Views\MovementType\" />
-    <Folder Include="Views\Price\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

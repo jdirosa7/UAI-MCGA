@@ -12,6 +12,6 @@ namespace MCGA_Safari.Services.Contracts.Request
     public partial class GetRoomRequest
     {
         [DataMember]
-        public Room Room { get; set; }
+        public int Id { get; set; }
     }
 }

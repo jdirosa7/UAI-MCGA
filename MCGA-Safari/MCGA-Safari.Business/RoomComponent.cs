@@ -12,17 +12,17 @@ namespace MCGA_Safari.Business
     {
         RoomDAC dac = new RoomDAC();
 
-        public Room Add(Room room)
+        public Room Add(Room Room)
         {
             Room result = default(Room);
             
-            result = dac.Create(room);
+            result = dac.Create(Room);
             return result;
         }
 
-        public void Update(Room room)
+        public void Update(Room Room)
         {
-            dac.Update(room);
+            dac.Update(Room);
         }
 
         public void Delete(int id)

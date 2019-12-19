@@ -13,7 +13,7 @@ namespace MCGA_Safari.UI.Process
     {
         public List<ServiceType> ToList()
         {
-            var response = HttpGet<AllServiceTypesResponse>("api/room/getAll", new Dictionary<string, object>(), MediaType.Json);
+            var response = HttpGet<AllServiceTypesResponse>("api/servicetype/getAll", new Dictionary<string, object>(), MediaType.Json);
             return response.Result;
         }
 
@@ -21,14 +21,14 @@ namespace MCGA_Safari.UI.Process
         {
             var request = new AddServiceTypeRequest();
             request.ServiceType = serviceType;
-            var response = HttpPost<AddServiceTypeRequest>("api/room/add", request, MediaType.Json);
+            var response = HttpPost<AddServiceTypeRequest>("api/servicetype/add", request, MediaType.Json);
         }
 
         public ServiceType Find(int id)
         {
             Dictionary<string, object> dir = new Dictionary<string, object>();
             dir.Add("Id", id);
-            var response = HttpGet<GetServiceTypeResponse>("api/room/getById", dir, MediaType.Json);
+            var response = HttpGet<GetServiceTypeResponse>("api/servicetype/getById", dir, MediaType.Json);
             return response.Result;
         }
 
@@ -36,14 +36,14 @@ namespace MCGA_Safari.UI.Process
         {
             var request = new UpdateServiceTypeRequest();
             request.ServiceType = serviceType;
-            var response = HttpPost<UpdateServiceTypeRequest>("api/room/update", request, MediaType.Json);
+            var response = HttpPost<UpdateServiceTypeRequest>("api/servicetype/update", request, MediaType.Json);
         }
 
         public void Delete(int id)
         {
             var request = new DeleteServiceTypeRequest();
             request.Id = id;
-            var response = HttpPost<DeleteServiceTypeRequest>("api/room/delete", request, MediaType.Json);
+            var response = HttpPost<DeleteServiceTypeRequest>("api/servicetype/delete", request, MediaType.Json);
         }
     }
 }

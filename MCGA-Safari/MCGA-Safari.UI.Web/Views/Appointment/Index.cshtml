@@ -36,8 +36,8 @@
                 <th>Fecha</th>
                 <th>Paciente</th>
                 <th>Doctor</th>
-                <th>Consultorio</th>
                 <th>Tipo de servicio</th>
+                <th>Consultorio</th>
                 <th>Estado</th>
             </tr>
         </thead>
@@ -90,12 +90,12 @@
                             }
                         },
                         {
-                            "data": "Room", render: function (data) {
+                            "data": "ServiceType", render: function (data) {
                                 return data.Name;
                             }
                         },
                         {
-                            "data": "ServiceType", render: function (data) {
+                            "data": "Room", render: function (data) {
                                 return data.Name;
                             }
                         },
@@ -132,11 +132,22 @@
 
                     if (rowData.Status == "Reservado") {
                         $('.btn-red').removeClass('hidden');
-                        $('.btn-warning').removeClass('hidden');
-                        
+                        $('.btn-warning').removeClass('hidden');                        
                     }
                     if (rowData.Status == "Confirmado") {
                         $('.btn-warning').removeClass('hidden');
+                    }
+                    var today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    var date = new Date(parseInt(rowData.Date.substr(6)));
+                    var ret = date.toLocaleDateString();
+
+                    var appDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                    appDate.setHours(0, 0, 0, 0);
+
+                    if (today.getTime() != appDate.getTime()) {
+                        $('.btn-warning').addClass('hidden');
                     }
                     
                     
@@ -213,6 +224,15 @@
                         $("#btnSaveAppointment").hide();
                         $("#btnUpdAppointment").show();
                         $('#updateGroup').show();
+
+                        if (res.Status == "Reservado") {
+                            $('#btnEndApp').hide();
+                        }
+
+                        if (res.Status == "Confirmado") {
+                            $('#btnConfirmApp').hide();
+                        }
+
                         $(".crudType")[0].innerText = "Actualizar turno";
                     },
                     error: function (msg) {

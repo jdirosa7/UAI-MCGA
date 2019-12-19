@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace MCGA_Safari.Services.Contracts
 {
-    public interface IRoom
+    public interface IServiceType
     {
-        List<Room> ToList();
-        Room Find(int id);
-        Room Add(Room room);
-        Room Update(int id, Room room);
+        List<ServiceType> ToList();
+        ServiceType Find(int id);
+        ServiceType Add(ServiceType ServiceType);
+        ServiceType Update(int id, ServiceType ServiceType);
         void Delete(int id);
     }
 }

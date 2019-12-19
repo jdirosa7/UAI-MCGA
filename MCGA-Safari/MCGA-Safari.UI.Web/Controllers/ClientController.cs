@@ -10,6 +10,7 @@ namespace MCGA_Safari.UI.Web.Controllers
     public class ClientController : Controller
     {
         ClientProcess db = new ClientProcess();
+        MovementProcess dbMovement = new MovementProcess();
         //ClientComponent db = new ClientComponent();
 
         
@@ -17,13 +18,19 @@ namespace MCGA_Safari.UI.Web.Controllers
         [Route("clientes", Name = "ClientControllerRouteIndex")]
         public ActionResult Index()
         {
-            var clientes = db.ToList();
-            return View(clientes);
+            return View();
         }
 
         public ActionResult Index2()
         {            
             return View();
+        }
+
+        public ActionResult ClientMovements(int id)
+        {
+            List<Movement> Movements = dbMovement.GetMovementsByClient(id);
+
+            return View(Movements);
         }
 
         public ActionResult GetData()

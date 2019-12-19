@@ -11,8 +11,8 @@ namespace MCGA_Safari.UI.Web.Controllers
 {
     public class ServiceTypeController : Controller
     {
-        ServiceTypeProcess serviceTypeProcess = new ServiceTypeProcess();
-        ServiceTypeComponent db = new ServiceTypeComponent();
+        ServiceTypeProcess db = new ServiceTypeProcess();
+        //ServiceTypeComponent db = new ServiceTypeComponent();
 
         // GET: ServiceType
         [Route("tiposservicio", Name = "ServiceTypeControllerRouteIndex")]

@@ -77,7 +77,7 @@ namespace MCGA_Safari.Data
                     LastName = GetDataValue<string>(dr, "ClienteApellido"),
                     Email = GetDataValue<string>(dr, "ClienteEmail"),
                     Phone = GetDataValue<string>(dr, "ClienteTelefono"),
-                    URL = GetDataValue<string>(dr, "URL"),
+                    URL = GetDataValue<string>(dr, "URL")
                 },
                 Specie = new Species
                 {
@@ -132,8 +132,8 @@ namespace MCGA_Safari.Data
                 {
                     while (dr.Read())
                     {
-                        Appointment serviceType = LoadAppointment(dr);
-                        result.Add(serviceType);
+                        Appointment app = LoadAppointment(dr);
+                        result.Add(app);
                     }
                 }
             }
@@ -156,7 +156,7 @@ namespace MCGA_Safari.Data
                 " = P.EspecieId inner join Sala S on S.Id = Cita.SalaId inner join TipoServicio TS on TS.Id" +
                 " = Cita.TipoServicioId WHERE Cita.Id= @Id";
 
-            Appointment serviceType = null;
+            Appointment app = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
@@ -166,11 +166,11 @@ namespace MCGA_Safari.Data
                 {
                     if (dr.Read())
                     {
-                        serviceType = LoadAppointment(dr);
+                        app = LoadAppointment(dr);
                     }
                 }
             }
-            return serviceType;
+            return app;
         }
 
         public void Update(Appointment entity)

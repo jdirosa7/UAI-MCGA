@@ -12,6 +12,6 @@ namespace MCGA_Safari.Services.Contracts.Request
     public partial class GetServiceTypeRequest
     {
         [DataMember]
-        public ServiceType ServiceType { get; set; }
+        public int Id { get; set; }
     }
 }

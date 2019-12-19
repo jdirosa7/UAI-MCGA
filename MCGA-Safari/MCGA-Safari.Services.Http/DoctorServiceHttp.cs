@@ -69,7 +69,7 @@ namespace MCGA_Safari.Services.Http
             {
                 var response = new GetDoctorResponse();
                 var bc = new DoctorComponent();
-                response.Result = bc.Find(request.Doctor.Id);
+                response.Result = bc.Find(request.Id);
                 return response;
             }
             catch (Exception ex)

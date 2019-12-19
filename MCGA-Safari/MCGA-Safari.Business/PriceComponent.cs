@@ -39,5 +39,19 @@ namespace MCGA_Safari.Business
             result = priceDAC.Read();
             return result;
         }
+
+        public Price Find(int id, DateTime date)
+        {
+            Price result = default(Price);
+            var dac = new PriceDAC();
+
+            Dictionary<string, string> filters = new Dictionary<string, string>();
+            filters.Add("TipoServicioId", id.ToString());
+            filters.Add("FechaDesde", date.ToString());
+            filters.Add("FechaHasta", date.ToString());
+
+            result = dac.ReadByFilters(filters);
+            return result;
+        }
     }
 }

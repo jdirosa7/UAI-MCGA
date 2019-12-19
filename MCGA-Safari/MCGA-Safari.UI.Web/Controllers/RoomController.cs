@@ -19,9 +19,11 @@ namespace MCGA_Safari.UI.Web.Controllers
         // GET: Room
         [Route("consultorios", Name = "RoomControllerRouteIndex")]
         public ActionResult Index()
-        {            
-            var rooms = db.ToList();
-            return View(rooms);
+        {
+            ViewBag.RoomTypes = new SelectList(Enum.GetValues(typeof(Room.RoomTypes)), RoomTypes.Recuperación);
+            return View();
+            //var Rooms = db.ToList();
+            //return View(Rooms);
         }
 
         public ActionResult CreatePartialView()
@@ -33,15 +35,15 @@ namespace MCGA_Safari.UI.Web.Controllers
         //[HttpGet]
         //public PartialViewResult Edit(Int32 id)
         //{
-        //    var room = db.Find(id);
-        //    return PartialView(room);
+        //    var Room = db.Find(id);
+        //    return PartialView(Room);
         //}
 
         //[HttpPost]
-        //public JsonResult Edit(Room room)
+        //public JsonResult Edit(Room Room)
         //{
-        //    db.Update(room);
-        //    return Json(room, JsonRequestBehavior.AllowGet);
+        //    db.Update(Room);
+        //    return Json(Room, JsonRequestBehavior.AllowGet);
         //}
 
         public ActionResult Index2()
@@ -58,19 +60,19 @@ namespace MCGA_Safari.UI.Web.Controllers
 
         public ActionResult GetDataById(int id)
         {
-            var room = db.Find(id);
-            return Json(room, JsonRequestBehavior.AllowGet);
+            var Room = db.Find(id);
+            return Json(Room, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult PostData(Room room)
+        public JsonResult PostData(Room Room)
         {
             Room dataRoom = new Room();
-            dataRoom.Name = room.Name;
-            dataRoom.RoomType = room.RoomType;
+            dataRoom.Name = Room.Name;
+            dataRoom.RoomType = Room.RoomType;
 
-            if (room.Id > 0)
+            if (Room.Id > 0)
             {
-                dataRoom.Id = room.Id;
+                dataRoom.Id = Room.Id;
                 db.Update(dataRoom);
             }
             else
@@ -101,13 +103,13 @@ namespace MCGA_Safari.UI.Web.Controllers
         {
             try
             {
-                Room room = db.Find(id);
-                if (room == null)
+                Room Room = db.Find(id);
+                if (Room == null)
                 {
                     return HttpNotFound();
                 }
 
-                return View(room);
+                return View(Room);
             }
             catch (Exception ex)
             {
@@ -123,11 +125,11 @@ namespace MCGA_Safari.UI.Web.Controllers
 
         // POST: Room/Create
         [HttpPost]
-        public ActionResult Create(Room room)
+        public ActionResult Create(Room Room)
         {
             try
             {
-                db.Add(room);
+                db.Add(Room);
                 return RedirectToAction("Index");
             }
             catch(Exception ex)
@@ -139,23 +141,23 @@ namespace MCGA_Safari.UI.Web.Controllers
         // GET: Room/Edit/5
         public ActionResult Edit(int id)
         {
-            Room room = db.Find(id);
-            if (room == null)
+            Room Room = db.Find(id);
+            if (Room == null)
             {
                 return HttpNotFound();
             }
 
-            return View(room);
+            return View(Room);
         }
 
         // POST: Room/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Room room)
+        public ActionResult Edit(int id, Room Room)
         {
             try
             {
                 // TODO: Add update logic here
-                db.Update(room);
+                db.Update(Room);
                 return RedirectToAction("Index");
             }
             catch
@@ -167,18 +169,18 @@ namespace MCGA_Safari.UI.Web.Controllers
         // GET: Room/Delete/5
         public ActionResult Delete(int id)
         {
-            Room room = db.Find(id);
-            if (room == null)
+            Room Room = db.Find(id);
+            if (Room == null)
             {
                 return HttpNotFound();
             }
 
-            return View(room);
+            return View(Room);
         }
 
         // POST: Room/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, Room room)
+        public ActionResult Delete(int id, Room Room)
         {
             try
             {
